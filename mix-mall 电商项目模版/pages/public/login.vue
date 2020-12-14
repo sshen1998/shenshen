@@ -12,31 +12,25 @@
 			<view class="nav_a">
 				<view class="nav_b" @click="changclick(index)" :class="{actvie:change==index}" v-for="(item,index) in nav" :key="index">{{item.title}}</view>
 			</view>
+			
 			<view class="input-content">
 				<view class="input-item">
-					<text class="tit">{{this.navtext[this.change].title}}</text>
+					<text class="tit">{{navtext[change].title}}</text>
 					<input 
-						type="number" 
-						:value="mobile" 
-					:placeholder="this.navtext[this.change].name"
-						maxlength="11"
-						data-key="mobile"
-						@input="inputChange"
+					type="number"
+						v-model="mobile"
+					:placeholder="navtext[change].name"
+						
 					/>
 				</view>
 				<view class="input-item">
-					<text class="tit">{{this.navtext[this.change].password}}</text>
+					<text class="tit">{{navtext[change].password}}</text>
 					<input 
-						type="mobile" 
-						value="" 
+						type="password" 
+						v-model="password"
 						
-						:placeholder="this.navtext[this.change].word"
-						placeholder-class="input-empty"
-						maxlength="20"
-						password 
-						data-key="password"
-						@input="inputChange"
-						@confirm="toLogin"
+						:placeholder="navtext[change].word"
+						
 					/>
 					
 				</view>
@@ -100,7 +94,13 @@
 				        'Content-Type': 'application/x-www-form-urlencoded' //自定义请求头信息
 				    },
 				    success: (res) => {
-				        console.log(res.data);
+				        console.log(res.data.code);
+						if(res.data.code===1){
+							uni.showToast({
+							    title: '验证码已发送',
+							    duration: 2000
+							});
+						}
 						
 					
 				        
@@ -143,23 +143,26 @@
 			},
 			async toLogin(){
 			
-				
+				//密码登录
 				if(this.change==0){
 					uni.request({
 					    url: 'https://yohigame.cnyouwei.com/app.php', //仅为示例，并非真实接口地址。
 					       method:"POST",
 						data: {
-					        mobile:this.mobile,
-					        	password:this.password
+							control:"User",
+							action:"logIn",
+					            mobile:this.mobile,
+					        	 password:this.password
 					    },
 					    header: {
 					        'Content-Type': 'application/x-www-form-urlencoded' //自定义请求头信息
 					    },
 					    success: (res) => {
-					        console.log(res.data.result.token);
-							
-							uni.setStorageSync('token',res.data.result.token)
-						if(res.data.code===1){
+							console.log(res)
+					        console.log(res.data.result.loginKey);
+							console.log(res.data.status)
+							uni.setStorageSync('token',res.data.result.loginKey)
+						if(res.data.status===1){
 						 uni.switchTab({
 						 	url:"../index/index"
 						 })
@@ -188,7 +191,17 @@
 					    },
 					    success: (res) => {
 						
-					        console.log(res);
+					        console.log(res.data.code);
+							if(res.data.code===1){
+								uni.showToast({
+								    title: '登录成功',
+								    duration: 2000
+								});
+								uni.navigateTo({
+									url:"../index/index"
+								})
+							}
+							
 							 
 					    }
 					});
