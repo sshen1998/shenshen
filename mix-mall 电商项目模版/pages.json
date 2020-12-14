@@ -55,8 +55,14 @@
 				"navigationBarTitleText": "设置"
 			}
 		},
-{
-			"path": "pages/zhuce/zhuce",
+		{
+			"path": "pages/forget/forget",
+			"style": {
+				"navigationBarTitleText": "忘记密码"
+			}
+		},
+		{
+			"path": "pages/zhucea/zhuce",
 			"style": {
 				"navigationBarTitleText": "注册"
 			}
@@ -143,6 +149,12 @@
 			"style": {
 				"navigationBarTitleText": "收货地址"
 			}
+		}, 
+		{
+			"path": "pages/forget/forget",
+			"style": {
+				"navigationBarTitleText": "忘记密码"
+			}
 		}, {
 			"path": "pages/address/addressManage",
 			"style": {
@@ -159,36 +171,33 @@
 			"style": {
 				"navigationBarTitleText": "支付成功"
 			}
-		}
-	    ,{
-            "path" : "pages/notice/notice",
-            "style" : {
+		}, {
+			"path": "pages/notice/notice",
+			"style": {
 				"navigationBarTitleText": "通知"
 			}
-        },
+		},
 		{
-		    "path" : "pages/zhuce/zhuce",
-		    "style" : {
+			"path": "pages/zhucea/zhuce",
+			"style": {
 				"navigationBarTitleText": "注册"
 			}
-		}
-        ,{
-            "path" : "pages/category/category",
-            "style" : {
+		}, {
+			"path": "pages/category/category",
+			"style": {
 				"navigationBarTitleText": "分类",
 				"app-plus": {
 					"bounce": "none"
 				}
 			}
-        }
-        ,{
-            "path" : "pages/product/list",
-            "style" : {
+		}, {
+			"path": "pages/product/list",
+			"style": {
 				"enablePullDownRefresh": true,
 				"navigationBarTitleText": "商品列表"
 			}
-        }
-    ],
+		}
+	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",
