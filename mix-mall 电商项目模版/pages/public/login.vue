@@ -71,6 +71,7 @@
 				indexa:0,
 				isshow:false,
 				mobile: '',
+	
 				password: '',
 				logining: false,
 				 control:"User",
@@ -114,12 +115,14 @@
 			// },
 			changclick(index){
 				
-				
+				console.log(index)
 				
 				console.log(123)
 				this.change=index
 				if(index==1){
 					this.isshow=true
+					this.mobile=null,
+					this.password=null
 				}else{
 					this.isshow=false
 				}
