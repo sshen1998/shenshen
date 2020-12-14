@@ -53,7 +53,7 @@
 <script>
 
 	import {  
-        mapMutations  
+        mapMutations
     } from 'vuex';
 	
 	export default{
