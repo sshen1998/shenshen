@@ -99,7 +99,7 @@
 		},
 		onLoad(){
 			this.loadData();
-			
+			this.aa();
 			
 		},
 		onShow(){
@@ -123,6 +123,7 @@
 					this.hasLogin=true
 				}else{
 					this.hasLogin=false
+					
 				}
 			},
 			
