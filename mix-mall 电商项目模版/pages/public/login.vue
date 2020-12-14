@@ -79,7 +79,9 @@
 				isshow:false,
 				mobile: '',
 				password: '',
-				logining: false
+				logining: false,
+				 control:"User",
+				action:"logIn"
 			}
 		},
 		onLoad(){
@@ -100,10 +102,7 @@
 				        'Content-Type': 'application/x-www-form-urlencoded' //自定义请求头信息
 				    },
 				    success: (res) => {
-				        console.log(res.data);
-						
-					
-				        
+				        console.log(res.data);   
 				    }
 				});
 				console.log("验证码")
@@ -135,31 +134,38 @@
 			},
 			toRegist(){
 				this.$api.msg('去注册');
+				uni.navigateTo({
+					url:"../zhuce/zhuce"
+				})
 			},
 			
-			tuichu(){
-				console.log(888)
-				uni.clearStorageSync('token')
-			},
+			// tuichu(){
+			// 	console.log(888)
+			// 	uni.clearStorageSync('token')
+			// },
 			async toLogin(){
 			
 				
 				if(this.change==0){
+					console.log(this.mobile)
+					console.log(this.password)
 					uni.request({
 					    url: 'https://yohigame.cnyouwei.com/app.php', //仅为示例，并非真实接口地址。
 					       method:"POST",
 						data: {
 					        mobile:this.mobile,
-					        	password:this.password
+					        password:this.password,
+							control:"User",
+						    action:"logIn"
 					    },
 					    header: {
 					        'Content-Type': 'application/x-www-form-urlencoded' //自定义请求头信息
 					    },
 					    success: (res) => {
-					        console.log(res.data.result.token);
-							
-							uni.setStorageSync('token',res.data.result.token)
-						if(res.data.code===1){
+							console.log(res)
+					  //       console.log(res.data.result.token);
+							// uni.setStorageSync('token',res.data.result.token)
+						if(res.data.status===1){
 						 uni.switchTab({
 						 	url:"../index/index"
 						 })
