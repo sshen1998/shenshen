@@ -28,7 +28,6 @@
 					<input 
 						type="password" 
 						v-model="password"
-						
 						:placeholder="navtext[change].word"
 						
 					/>
@@ -73,7 +72,9 @@
 				isshow:false,
 				mobile: '',
 				password: '',
-				logining: false
+				logining: false,
+				 control:"User",
+				action:"logIn"
 			}
 		},
 		onLoad(){
@@ -94,6 +95,8 @@
 				        'Content-Type': 'application/x-www-form-urlencoded' //自定义请求头信息
 				    },
 				    success: (res) => {
+
+				        console.log(res.data);   
 				        console.log(res.data.code);
 						if(res.data.code===1){
 							uni.showToast({
@@ -101,9 +104,6 @@
 							    duration: 2000
 							});
 						}
-						
-					
-				        
 				    }
 				});
 				console.log("验证码")
@@ -135,20 +135,29 @@
 			},
 			toRegist(){
 				this.$api.msg('去注册');
+				uni.navigateTo({
+					url:"../zhuce/zhuce"
+				})
 			},
 			
-			tuichu(){
-				console.log(888)
-				uni.clearStorageSync('token')
-			},
+			// tuichu(){
+			// 	console.log(888)
+			// 	uni.clearStorageSync('token')
+			// },
 			async toLogin(){
 			
 				//密码登录
 				if(this.change==0){
+					console.log(this.mobile)
+					console.log(this.password)
 					uni.request({
 					    url: 'https://yohigame.cnyouwei.com/app.php', //仅为示例，并非真实接口地址。
 					       method:"POST",
 						data: {
+					        mobile:this.mobile,
+					        password:this.password,
+							control:"User",
+						    action:"logIn",
 							control:"User",
 							action:"logIn",
 					            mobile:this.mobile,
@@ -159,6 +168,8 @@
 					    },
 					    success: (res) => {
 							console.log(res)
+					  //       console.log(res.data.result.token);
+							// uni.setStorageSync('token',res.data.result.token)
 					        console.log(res.data.result.loginKey);
 							console.log(res.data.status)
 							uni.setStorageSync('token',res.data.result.loginKey)

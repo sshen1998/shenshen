@@ -55,7 +55,12 @@
 				"navigationBarTitleText": "设置"
 			}
 		},
-
+{
+			"path": "pages/zhuce/zhuce",
+			"style": {
+				"navigationBarTitleText": "注册"
+			}
+		},
 		{
 			"path": "pages/userinfo/userinfo",
 			"style": {
@@ -160,7 +165,13 @@
             "style" : {
 				"navigationBarTitleText": "通知"
 			}
-        }
+        },
+		{
+		    "path" : "pages/zhuce/zhuce",
+		    "style" : {
+				"navigationBarTitleText": "注册"
+			}
+		}
         ,{
             "path" : "pages/category/category",
             "style" : {
