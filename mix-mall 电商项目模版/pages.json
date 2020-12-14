@@ -161,23 +161,22 @@
 				"navigationBarTitleText": "通知"
 			}
         }
-        
+        ,{
+            "path" : "pages/category/category",
+            "style" : {
+				"navigationBarTitleText": "分类",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+        }
         ,{
             "path" : "pages/product/list",
             "style" : {
 				"enablePullDownRefresh": true,
 				"navigationBarTitleText": "商品列表"
 			}
-        },
-		{
-			"path": "pages/game/game",
-			"style": {
-				"navigationBarTitleText": "游戏",
-				"app-plus": {
-					"bounce": "none"
-				}
-			}
-			}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
@@ -197,18 +196,10 @@
 				"text": "首页"
 			},
 			{
-				// pages/product/list
-				"pagePath": "pages/product/list",
-				"iconPath": "static/tab-cate.png",
+				"pagePath": "pages/category/category",
+				"iconPath": "static/商品列表.png",
 				"selectedIconPath": "static/tab-cate-current.png",
-				"text": "购物"
-			},
-			{
-				"pagePath": "pages/game/game",
-				"iconPath": "./static/youxi.png",
-				"selectedIconPath": "./static/youxi.png",
-				"text": "游戏"
-				
+				"text": "商品列表"
 			},
 			{
 				"pagePath": "pages/cart/cart",
@@ -222,14 +213,6 @@
 				"selectedIconPath": "static/tab-my-current.png",
 				"text": "我的"
 			}
-			
-		],
-		"midButton":{
-			"width":"100px",
-			"height":"100px",
-			"text":"游戏2.0t",
-			"iconPath": "./static/youxi.png",
-			"iconWidth": "40px" 
-		}
+		]
 	}
 }

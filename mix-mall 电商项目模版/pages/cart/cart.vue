@@ -94,10 +94,16 @@
 				allChecked: false, //全选状态  true|false
 				empty: false, //空白页现实  true|false
 				cartList: [],
+				hasLogin:false
 			};
 		},
 		onLoad(){
 			this.loadData();
+			
+			
+		},
+		onShow(){
+			this.aa();
 		},
 		watch:{
 			//显示空白页
@@ -112,6 +118,14 @@
 			...mapState(['hasLogin'])
 		},
 		methods: {
+			aa(){
+				if(uni.getStorageSync('token')){
+					this.hasLogin=true
+				}else{
+					this.hasLogin=false
+				}
+			},
+			
 			//请求数据
 			async loadData(){
 				let list = await this.$api.json('cartList'); 

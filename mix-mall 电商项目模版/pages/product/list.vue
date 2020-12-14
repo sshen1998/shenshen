@@ -1,12 +1,20 @@
 <template>
-	<view class="content">	
+	<view class="content">
 		<view class="navbar" :style="{position:headerPosition,top:headerTop}">
-			<scroll-view scroll-y="true" class="scroll" @scroll="scrollChnage">
-				<!-- <view class="top-section"></view> -->
-				<view class="navbar-section" :class="{'navbar-fixed-section': isFixed}">
-					<ss-scroll-navbar :tabCurrentIndex="currentIndex" @navbarTap="navbarTapHandler"></ss-scroll-navbar>
-				</view>			
-			</scroll-view>
+			<view class="nav-item" :class="{current: filterIndex === 0}" @click="tabClick(0)">
+				综合排序
+			</view>
+			<view class="nav-item" :class="{current: filterIndex === 1}" @click="tabClick(1)">
+				销量优先
+			</view>
+			<view class="nav-item" :class="{current: filterIndex === 2}" @click="tabClick(2)">
+				<text>价格</text>
+				<view class="p-box">
+					<text :class="{active: priceOrder === 1 && filterIndex === 2}" class="yticon icon-shang"></text>
+					<text :class="{active: priceOrder === 2 && filterIndex === 2}" class="yticon icon-shang xia"></text>
+				</view>
+			</view>
+			<text class="cate-item yticon icon-fenlei1" @click="toggleCateMask('show')"></text>
 		</view>
 		<view class="goods-list">
 			<view 
@@ -48,11 +56,9 @@
 
 <script>
 	import uniLoadMore from '@/components/uni-load-more/uni-load-more.vue';
-	import ssScrollNavbar from '@/components/ss-scroll-navbar/ss-scroll-navbar.vue';
 	export default {
 		components: {
-			uniLoadMore	,
-			ssScrollNavbar
+			uniLoadMore	
 		},
 		data() {
 			return {
@@ -64,11 +70,7 @@
 				cateId: 0, //已选三级分类id
 				priceOrder: 0, //1 价格从低到高 2价格从高到低
 				cateList: [],
-				goodsList: [],
-				
-				currentIndex: 0,
-				isFixed: false,
-				topHeight: 0
+				goodsList: []
 			};
 		},
 		
@@ -79,11 +81,6 @@
 			this.cateId = options.tid;
 			this.loadCateList(options.fid,options.sid);
 			this.loadData();
-			
-			uni.setNavigationBarTitle({
-				title: options.title,
-				})
-				this.calculateTopSectionHeight();
 		},
 		onPageScroll(e){
 			//兼容iOS端下拉时顶部漂移
@@ -102,30 +99,6 @@
 			this.loadData();
 		},
 		methods: {
-			navbarTapHandler(index) {
-				this.currentIndex = index;
-			},
-			scrollChnage(e) {
-				let top = e.detail.scrollTop;
-				if (top >= this.topHeight) {
-					this.isFixed = true;
-				} else {
-					this.isFixed = false;
-				}
-			},
-			/**
-			 * 计算头部视图的高度
-			 */
-			calculateTopSectionHeight() {
-				var that = this;
-				let topView = uni.createSelectorQuery().select(".top-section");
-				topView.fields({
-					size: true
-				}, data => {
-					that.topHeight = data.height;
-				}).exec();
-			},
-			
 			//加载分类
 			async loadCateList(fid, sid){
 				let list = await this.$api.json('cateList');
@@ -234,35 +207,6 @@
 </script>
 
 <style lang="scss">
-	.scroll {
-		// position: absolute;
-		// top: upx;
-		// left: 0upx;
-		// bottom: 0upx;
-		// right: 0upx;
-	
-		.navbar-fixed-section {
-			position: fixed;
-			// top: 0upx;
-			// left: 0upx;
-			// right: 0upx;
-		}
-	
-		.top-section {
-			height: 350upx;
-			background-color: green;
-		}
-	
-		.bottom-section {
-			height: 1500upx;
-			background-color: yellow;
-		}
-	
-		.footer-section {
-			height: 1500upx;
-			background-color: blue;
-		}
-	}
 	page, .content{
 		background: $page-color-base;
 	}
@@ -274,16 +218,13 @@
 		position: fixed;
 		left: 0;
 		top: var(--window-top);
-		// display: flex;
+		display: flex;
 		width: 100%;
-		height: 90upx;
+		height: 80upx;
 		background: #fff;
 		box-shadow: 0 2upx 10upx rgba(0,0,0,.06);
 		z-index: 10;
-		.pxNav{
-			display: flex;
-		}
-		.pxNav .nav-item{
+		.nav-item{
 			flex: 1;
 			display: flex;
 			justify-content: center;
