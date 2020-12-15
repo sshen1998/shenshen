@@ -205,7 +205,8 @@
 					    },
 					    success: (res) => {
 						
-					        console.log(res.data.code);
+					        console.log(res.data);
+							uni.setStorageSync('token',res.data.result.token)
 							if(res.data.code===1){
 								uni.showToast({
 								    title: '登录成功',
