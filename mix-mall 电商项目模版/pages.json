@@ -218,8 +218,8 @@
 			},
 			{
 				"pagePath": "pages/product/list",
-				"iconPath": "static/商品列表.png",
-				"selectedIconPath": "static/tab-cate-current.png",
+				"iconPath": "static/商品列表1 (3).png",
+				"selectedIconPath": "static/商品列表1 (10).png",
 				"text": "商品列表"
 			},
 			{
