@@ -69,11 +69,11 @@
 	            "port" : 8080,
 	            "disableHostCheck" : true,
 	            "proxy" : {
-	                "/index" : {
+	                "/api" : {
 	                    "target" : "http://yishengsuoyi.cnyouwei.com",
 	                    "changeOrigin" : true,
 	                    "secure" : false,
-						"pathRewrite":{"^/index":""}
+						"pathRewrite":{"^/api":"/"}
 						
 	                }
 	            }

@@ -60,12 +60,14 @@
 				        console.log(res);   
 						console.log(this.mobile)
 						console.log(this.password)
+						if(res.data.status===1){
+							uni.switchTab({
+								url:'../user/user'
+							})
+						}
 				    },
 				});
 				console.log("验证码")
-				uni.navigateTo({
-					url:'../public/login'
-				})
 			},
 			fasong(){
 				uni.request({
