@@ -68,6 +68,15 @@
 			}
 		},
 		{
+			"path": "pages/game/game",
+			"style": {
+				"navigationBarTitleText": "游戏",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
 			"path": "pages/userinfo/userinfo",
 			"style": {
 				"navigationBarTitleText": "修改资料"
@@ -149,7 +158,7 @@
 			"style": {
 				"navigationBarTitleText": "收货地址"
 			}
-		}, 
+		},
 		{
 			"path": "pages/forget/forget",
 			"style": {
@@ -216,10 +225,17 @@
 				"text": "首页"
 			},
 			{
-				"pagePath": "pages/category/category",
+				"pagePath": "pages/product/list",
 				"iconPath": "static/商品列表.png",
 				"selectedIconPath": "static/tab-cate-current.png",
 				"text": "商品列表"
+			},
+			{
+				"pagePath": "pages/game/game",
+				"iconPath": "./static/youxi.png",
+				"selectedIconPath": "./static/youxi.png",
+				"text": "游戏"
+
 			},
 			{
 				"pagePath": "pages/cart/cart",

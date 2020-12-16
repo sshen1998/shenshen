@@ -96,12 +96,12 @@
 		padding: 100upx;
 	}
 	.uni-form-item{
-		margin-bottom: 40upx;
+		margin-bottom: 42upx;
 		padding: 0;
 		border-bottom: 1px solid #e3e3e3;
 		.uni-input{
-			font-size: 45upx;
-			padding: 7px 0;
+			font-size: 40upx;
+			padding-left: 7upx;
 		}
 	}
 	.column-with-btn{

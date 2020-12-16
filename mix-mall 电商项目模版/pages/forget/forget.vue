@@ -14,7 +14,8 @@
 			<view class="list-call">
 				<image class="img" src="/static/shilu-login/3.png"></image>
 				<input class="sl-input" type="number" maxlength="6" placeholder="验证码" v-model="vcode" />
-				<view class="yzm" @click="forgetyanzhen">获取验证码</view>
+				<wyb-button class="btn" width="190rpx" type="hollow"@click="forgetyanzhen">获取验证码</wyb-button>
+				<!-- <view class="yzm" @click="forgetyanzhen">获取验证码1</view> -->
 			</view>
 		</view>
 		<view class="button-login" hover-class="button-hover">

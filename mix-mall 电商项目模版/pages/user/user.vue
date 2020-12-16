@@ -7,8 +7,8 @@
 				<view class="portrait-box">
 					<image class="portrait" :src="userInfo.portrait || '/static/missing-face.png'"></image>
 				</view>
-				<view class="info-box">
-					<text class="username">{{userInfo.nickname || '游客'}}</text>
+				<view class="info-box" >
+					<text class="username">{{names || '游客'}}</text>
 				</view>
 			</view>
 			<view class="vip-card-box">
@@ -111,9 +111,14 @@
 				coverTransform: 'translateY(0px)',
 				coverTransition: '0s',
 				moving: false,
+				names:''
 			}
 		},
 		onLoad(){
+			this.likname()
+		},
+		onShow(){
+			this.likname()
 		},
 		// #ifndef MP
 		onNavigationBarButtonTap(e) {
@@ -139,7 +144,12 @@
 			...mapState(['hasLogin','userInfo'])
 		},
         methods: {
-
+               likname(){
+				   let namelike=uni.getStorageSync("names")
+				   // 更改电话号码中间数字
+				  this.names=namelike.substring(0,3)+"****"+namelike.substring(namelike.length-4)
+				   console.log(this.names)
+			   },
 			/**
 			 * 统一跳转接口,拦截未登录路由
 			 * navigator标签现在默认没有转场动画，所以用view

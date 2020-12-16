@@ -21,10 +21,11 @@
 				<view class="input-item">
 					<text class="tit">{{navtext[change].password}}</text>
 					<input type="password" v-model="password" :placeholder="navtext[change].word" />
-
+					<wyb-button class="btn" width="190rpx" type="default" v-if="isshow" @click="yzm()">获取验证码</wyb-button>
 				</view>
 			</view>
-			<button class="confirm-btna" v-if="isshow" @click="yzm()">获取验证码</button>
+<!-- <wyb-button class="btn" width="190rpx" type="default" v-if="isshow" @click="yzm()">获取验证码</wyb-button> -->
+			<!-- <button class="confirm-btna" v-if="isshow" @click="yzm()">获取验证码</button> -->
 			<button class="confirm-btn" @click="toLogin()">登录</button>
 			<button class="confirm-btn" type="default" @click="tuichu()">退出</button>
 			<view class="forget-section" @click="forgets">
@@ -168,8 +169,9 @@
 							uni.setStorageSync('token', res.data.result.loginKey)
 							if (res.data.status === 1) {
 								uni.switchTab({
-									url:'../user/user'
+									url: '../user/user'
 								})
+								uni.setStorageSync('names', res.data.result.mobile)
 
 							} else {
 								uni.showToast({
@@ -335,6 +337,7 @@
 	}
 
 	.input-item {
+		position: relative;
 		display: flex;
 		flex-direction: column;
 		align-items: flex-start;
@@ -363,17 +366,19 @@
 			color: $font-color-dark;
 			width: 100%;
 		}
+		
 	}
 
-	.confirm-btna {
-		position: relative;
-		top: -49px;
-		left: 87px;
+	.btn {
+		position: absolute;
+		/* top: 24px; */
+		/* left: 480upx; */
+		bottom: 10upx;
+		right: 10%;
 		width: 300upx;
-		height: 76upx;
+		height: 30upx;
 		line-height: 76upx;
 		border-radius: 50px;
-
 		background: $uni-color-primary;
 		color: #fff;
 		font-size: $font-lg;
