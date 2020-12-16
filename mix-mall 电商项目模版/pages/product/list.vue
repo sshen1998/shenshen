@@ -107,11 +107,6 @@
 			
 			
 			fenlei(){
-				
-				
-				
-				
-				
 				uni.request({
 					url: 'https://yohigame.cnyouwei.com/app.php', //仅为示例，并非真实接口地址。
 					method: "POST",
@@ -163,7 +158,6 @@
 							       this.goodsList.forEach((item,index)=>{
 									 console.log(item.pic);
 									 item.pic= "https://yohigame.cnyouwei.com"+item.pic
-					                 
 								   })
 								console.log(this.goodsList)
 							}
