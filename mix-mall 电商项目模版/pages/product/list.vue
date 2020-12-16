@@ -15,7 +15,7 @@
 		       	<view 
 		       		v-for="(item, index) in goodsList" :key="index"
 		       		class="goods-item"
-		       		@click="navToDetailPage(item)"
+		       		@click="navToDetailPage(item.id)"
 		       	>
 		       		<view class="image-wrapper" >
 		       			<image :src="item.pic" mode="aspectFill"></image>
@@ -104,8 +104,6 @@
 						}
 				})
 			},
-			
-			
 			fenlei(){
 				uni.request({
 					url: 'https://yohigame.cnyouwei.com/app.php', //仅为示例，并非真实接口地址。
@@ -127,12 +125,9 @@
 							console.log(item)
 							this.list.push(item)
 						})
-						console.log(this.list)
-						
-				}
-					
+						console.log(this.list)	
+				}	
 				});
-			
 			},
 			tabClick(defaultIndex){
 			 this.change=defaultIndex
@@ -167,7 +162,12 @@
 				console.log(123)
 			}
 			},
-			
+			navToDetailPage(id){
+				console.log(id)
+				uni.navigateTo({
+					url:"/pages/product/product?uid="+id
+				})
+			}
 		}
 	}
 </script>
