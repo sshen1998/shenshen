@@ -184,7 +184,7 @@
 		width: 100%;
 		.cover-container{
 			width: 100%;
-			margin-top: -100rpx;
+			margin-top: -80rpx;
 			.list{
 				width: 100%;
 				.load-more{
