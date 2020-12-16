@@ -2,10 +2,10 @@
 	<view class="container">
 		<view class="carousel">
 			<swiper indicator-dots circular=true duration="400">
-				<swiper-item class="swiper-item" v-for="(item,index) in imgList" :key="index">
+				<swiper-item class="swiper-item" v-for="(item,index) in aa" :key="index">
 					<view class="image-wrapper">
 						<image
-							:src="item.src" 
+							:src="item" 
 							class="loaded" 
 							mode="aspectFill"
 						></image>
@@ -15,22 +15,22 @@
 		</view>
 		
 		<view class="introduce-section">
-			<text class="title">恒源祥2019春季长袖白色t恤 新款春装</text>
+			<text class="title">{{producy.title}}</text>
 			<view class="price-box">
 				<text class="price-tip">¥</text>
-				<text class="price">341.6</text>
-				<text class="m-price">¥488</text>
-				<text class="coupon-tip">7折</text>
+				<text class="price">{{producy.price}}</text>
+				<text class="m-price">¥{{producy.oprice}}</text>
+				<text class="coupon-tip">{{producy.discout}}折</text>
 			</view>
 			<view class="bot-row">
-				<text>销量: 108</text>
-				<text>库存: 4690</text>
-				<text>浏览量: 768</text>
+				<text>销量: {{producy.hasview}}</text>
+				<text>库存: {{producy.kucun}}</text>
+				<text>浏览量: {{producy.soldNum}}</text>
 			</view>
 		</view>
 		
 		<!--  分享 -->
-		<view class="share-section" @click="share">
+		<!-- <view class="share-section" @click="share">
 			<view class="share-icon">
 				<text class="yticon icon-xingxing"></text>
 				 返
@@ -42,7 +42,7 @@
 				<text class="yticon icon-you"></text>
 			</view>
 			
-		</view>
+		</view> -->
 		
 		<view class="c-list">
 			<view class="c-row b-b" @click="toggleSpec">
@@ -54,7 +54,7 @@
 				</view>
 				<text class="yticon icon-you"></text>
 			</view>
-			<view class="c-row b-b">
+			<!-- <view class="c-row b-b">
 				<text class="tit">优惠券</text>
 				<text class="con t-r red">领取优惠券</text>
 				<text class="yticon icon-you"></text>
@@ -67,7 +67,7 @@
 					<text>订单满100减30</text>
 					<text>单笔购买满两件免邮费</text>
 				</view>
-			</view>
+			</view> -->
 			<view class="c-row b-b">
 				<text class="tit">服务</text>
 				<view class="bz-list con">
@@ -184,6 +184,8 @@
 		},
 		data() {
 			return {
+				aa:[],
+				producy:[],
 				specClass: 'none',
 				specSelected:[],
 				
@@ -269,7 +271,8 @@
 			};
 		},
 		async onLoad(options){
-			
+			console.log('uid',options.uid)
+			this.product(options.uid)
 			//接收传值,id里面放的是标题，因为测试数据并没写id 
 			let id = options.id;
 			if(id){
@@ -289,7 +292,36 @@
 			})
 			this.shareList = await this.$api.json('shareList');
 		},
+		
 		methods:{
+			//请求参数接口
+			product(uid){
+				var id=uid
+				console.log(uid)
+				uni.request({
+					url: 'https://yohigame.cnyouwei.com/app.php', //仅为示例，并非真实接口地址。
+					method: "POST",
+					data: {
+					 control:"Shop",
+					      action:"getProInfo",
+					      pid:id/////产品ID
+					},
+					header: {
+						'Content-Type': 'application/x-www-form-urlencoded' //自定义请求头信息
+					},
+					success: (res) => {
+					
+						console.log(res.data.result);
+						this.producy=res.data.result
+						this.aa=res.data.result.pic.split('|')
+						this.aa= this.aa.map((item,index)=>{
+						 return item=this.baseUrl+item
+						 })
+						console.log(this.aa)
+					}
+				})
+			},
+				
 			//规格弹窗开关
 			toggleSpec() {
 				if(this.specClass === 'show'){

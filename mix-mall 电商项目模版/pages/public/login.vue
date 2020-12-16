@@ -89,10 +89,12 @@
 
 			yzm() {
 				uni.request({
-					url: 'http://yishengsuoyi.cnyouwei.com/index/index/sendSMS', //仅为示例，并非真实接口地址。
+					url: 'https://yohigame.cnyouwei.com/app.php', //仅为示例，并非真实接口地址。
 					method: "POST",
 					data: {
-						mobile: this.mobile,
+						 control:"User",
+						      action:"sendSMS",
+						mobile: this.mobile
 
 					},
 					header: {

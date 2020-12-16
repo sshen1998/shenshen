@@ -191,15 +191,7 @@
 			"style": {
 				"navigationBarTitleText": "注册"
 			}
-		}, {
-			"path": "pages/category/category",
-			"style": {
-				"navigationBarTitleText": "分类",
-				"app-plus": {
-					"bounce": "none"
-				}
-			}
-		}, {
+		},  {
 			"path": "pages/product/list",
 			"style": {
 				"enablePullDownRefresh": true,

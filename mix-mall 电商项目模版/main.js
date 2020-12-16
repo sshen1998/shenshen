@@ -5,6 +5,7 @@ import wybButton from './components/wyb-button/wyb-button.vue'
 import {http} from './utilt/request/index.js'
 import Json from './Json' //测试用数据
 
+Vue.prototype.baseUrl="https://yohigame.cnyouwei.com"
 Vue.component('wyb-button', wybButton) // 全局注册，即所有.vue页面都可以不用声明直接使用
 
 
