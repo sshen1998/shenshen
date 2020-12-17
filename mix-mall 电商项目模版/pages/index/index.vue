@@ -67,7 +67,7 @@
 				<text class="tit">分类精选</text>
 				<text class="tit2">Competitive Products For You</text>
 			</view>
-			<text class="yticon icon-you"></text>
+			<!-- <text class="yticon icon-you"></text> -->
 		</view>
 		<view class="hot-floor">
 			<view class="floor-img-box">
@@ -76,7 +76,7 @@
 			</view>
 			<scroll-view class="floor-list" scroll-x>
 				<view class="scoll-wrapper">
-					<view v-for="(item, index) in indexImg" :key="index" class="floor-item" @click="navToDetailPage(item)">
+					<view v-for="(item, index) in indexImg" :key="index" class="floor-item" @click="navToDetailPage(item.id)">
 						<image :src="item.pic" mode="aspectFill"></image>
 						<text class="title clamp">{{item.smallTitle}}</text>
 						<text class="price">￥{{item.price}}</text>
@@ -92,11 +92,11 @@
 				<text class="tit">猜你喜欢</text>
 				<text class="tit2">Guess You Like It</text>
 			</view>
-			<text class="yticon icon-you"></text>
+			<!-- <text class="yticon icon-you"></text> -->
 		</view>
 
 		<view class="guess-section">
-			<view v-for="(item, index) in indexImg" :key="index" class="guess-item" @click="navToDetailPage(item)">
+			<view v-for="(item, index) in indexImg" :key="index" class="guess-item" @click="navToDetailPage(item.id)">
 				<view class="image-wrapper">
 					<image :src="item.pic" mode="aspectFill"></image>
 				</view>
@@ -176,11 +176,11 @@
 				this.titleNViewBackground = this.carouselList[index].background;
 			},
 			//详情页
-			navToDetailPage(item) {
+			navToDetailPage(id) {
 				//测试数据没有写id，用title代替
-				let id = item.title;
+				console.log(id)
 				uni.navigateTo({
-					url: `/pages/product/product?id=${id}`
+					url:"/pages/product/product?uid="+id
 				})
 			},
 		},

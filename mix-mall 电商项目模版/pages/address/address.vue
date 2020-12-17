@@ -18,10 +18,13 @@
 		</text>
 		
 		<button class="add-btn" @click="addAddress('add')">新增地址</button>
+		<!-- <addressManage :toAddress="getAddress"></addressManage> -->
 	</view>
 </template>
 
 <script>
+	// import addressManage from "./addressManage"
+	
 	export default {
 		data() {
 			return {
@@ -45,11 +48,17 @@
 				]
 			}
 		},
+		components:{
+			// addressManage
+		},
 		onLoad(option){
 			console.log(option.source);
 			this.source = option.source;
 		},
 		methods: {
+			getAddress(e){
+				console.log(e)
+			},
 			//选择地址
 			checkAddress(item){
 				if(this.source == 1){
@@ -67,7 +76,7 @@
 			refreshList(data, type){
 				//添加或修改后事件，这里直接在最前面添加了一条数据，实际应用中直接刷新地址列表即可
 				this.addressList.unshift(data);
-				
+			
 				console.log(data, type);
 			}
 		}

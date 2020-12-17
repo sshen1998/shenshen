@@ -310,7 +310,6 @@
 						'Content-Type': 'application/x-www-form-urlencoded' //自定义请求头信息
 					},
 					success: (res) => {
-					
 						console.log(res.data.result);
 						this.producy=res.data.result
 						this.aa=res.data.result.pic.split('|')

@@ -173,7 +173,8 @@
 								uni.switchTab({
 									url: '../user/user'
 								})
-								uni.setStorageSync('names', res.data.result.mobile)
+								uni.setStorageSync('names', res.data.result.mobile);
+								uni.setStorageSync('status',res.data.status);
 
 							} else {
 								uni.showToast({

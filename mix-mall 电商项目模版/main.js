@@ -55,6 +55,7 @@ Vue.prototype.$http=http
 App.mpType = 'app'
 
 const app = new Vue({
-    ...App
+    ...App,
+	store
 })
 app.$mount()
